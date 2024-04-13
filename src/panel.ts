@@ -19,7 +19,7 @@ export async function GetPanel(request: Request, env: Env): Promise<Response> {
       await env.settings.delete("Providers")
       await env.settings.delete("Protocols")
     }
-    const maxConfigs: number = parseInt(await env.settings.get("MaxConfigs") || "200")
+    const maxConfigs: number = parseInt(await env.settings.get("MaxConfigs") || "80")
     const protocols: Array<string> = (await env.settings.get("Protocols"))?.split("\n").filter(t => t.trim().length > 0) || defaultProtocols
     const alpnList: Array<string> = (await env.settings.get("ALPNs"))?.split("\n").filter(t => t.trim().length > 0) || []
     const fingerPrints: Array<string> = (await env.settings.get("FingerPrints"))?.split("\n").filter(t => t.trim().length > 0) || []
